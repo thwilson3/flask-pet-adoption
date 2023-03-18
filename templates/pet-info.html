@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %} More About {{ pet.name }} {% endblock %}
+
+{% block content %}
+
+<div>
+  <img src="{{pet.photo_url}}">
+</div>
+
+<ul>
+  <li>{{ pet.name }}</li>
+  <li>{{ pet.age }}</li>
+  <li>{{ pet.species}}</li>
+</ul>
+
+<form id="pet-update-form" method="POST">
+  {{ form.hidden_tag() }}
+    {% for field in form
+      if field.widget.input_type != 'hidden'%}
+
+     {% if field.label == 'Image URL' %}
+        <p>
+          {{ field.label }}
+          {{ field }}
+        </p>
+      {% elif field.label == 'Additional Notes' %}
+        <p>
+          {{ field.label }}
+          {{ field }}
+        </p>
+      {% elif field.label == 'available' %}
+        <p>
+          {{ field.label }}
+          {{ field }}
+        </p>
+      {% endif %}
+    {% endfor %}
+</form>
+
+
+
+{% endblock %}
